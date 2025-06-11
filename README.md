@@ -2,6 +2,8 @@
 
 Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you through every step, from installing Anaconda to setting up and activating your workshop environment. Even if you're completely new to using a terminal (the program where you type commands), don’t worry—we’ve got you covered.
 
+> **Note:** First complete the setup steps below to configure your environment, then follow the step-by-step instructions in [TUTORIAL.md](https://github.com/yipy0005/Basic-Molecular-Docking-Workshop/blob/main/TUTORIAL.md) to learn how to perform molecular docking.
+
 ---
 
 ## Table of Contents
@@ -75,7 +77,7 @@ You should see a window with a prompt, such as `C:\Users\YourName>` on Windows o
    cd ~/Documents
    ```
 
-2. Clone this repository from GitHub (you need to have [Git installed](https://git-scm.com/)—Anaconda includes Git by default):
+2. Clone this repository from GitHub (you need to have [Git installed](https://git-scm.com/) — Anaconda includes Git by default):
 
    ```bash
    git clone https://github.com/yipy0005/Basic-Molecular-Docking-Workshop.git
@@ -109,7 +111,8 @@ You now have a new environment named `molecular_docking_workshop`.
 
 Before using any workshop tools, you must "activate" the environment:
 
-- **All operating systems**:
+* **All operating systems**:
+
   ```bash
   conda activate molecular_docking_workshop
   ```
@@ -152,8 +155,9 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
    ./pdbqt2pdb.sh my_structure.pdbqt
    ```
 
-   - The script splits each `MODEL` into its own file and converts them to `.pdb` format.
-   - You’ll see output like:
+   * The script splits each `MODEL` into its own file and converts them to `.pdb` format.
+   * You’ll see output like:
+
      ```
      → Converted to my_structure_model1.pdb and removed my_structure_model1.pdbqt
      ```
@@ -162,9 +166,9 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
 
 ## Troubleshooting
 
-- **"Command not found" errors**: Make sure you have activated the environment with `conda activate molecular_docking_workshop`.
-- **Permission denied** when running the script: Ensure you ran `chmod +x pdbqt2pdb.sh`.
-- If you get stuck at any step, feel free to ask for help or check online resources for Conda and Git.
+* **"Command not found" errors**: Make sure you have activated the environment with `conda activate molecular_docking_workshop`.
+* **Permission denied** when running the script: Ensure you ran `chmod +x pdbqt2pdb.sh`.
+* If you get stuck at any step, feel free to ask for help or check online resources for Conda and Git.
 
 ---
 
@@ -172,9 +176,8 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
 
 This workshop uses open-source tools including:
 
-- [RDKit](https://www.rdkit.org/)
-- [AutoDock Vina](http://vina.scripps.edu/)
-- [Biopython, Gemmi, SciPy](https://www.scipy.org/)
+* [RDKit](https://www.rdkit.org/)
+* [AutoDock Vina](http://vina.scripps.edu/)
+* [Biopython, Gemmi, SciPy](https://www.scipy.org/)
 
 Enjoy learning molecular docking!
-

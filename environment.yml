@@ -1,0 +1,12 @@
+name: molecular_docking_workshop
+channels:
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+dependencies:
+  - bioconda::reduce
+  - conda-forge::gemmi
+  - conda-forge::rdkit
+  - conda-forge::scipy
+  - conda-forge::vina
+  - python=3.10
+  - conda-forge::pymol-open-source

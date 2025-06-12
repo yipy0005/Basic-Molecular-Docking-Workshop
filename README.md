@@ -150,14 +150,13 @@ After activation, your prompt will change to show the environment name, for exam
 Once the environment is active, install the **Meeko** package and **ProDy**:
 
 ```bash
-# Navigate to the Meeko folder
-dd to the folder where Meeko is located:
+# Clone the Meeko repository and navigate to the Meeko folder
+git clone https://github.com/forlilab/Meeko.git
 cd Meeko
-
-# Switch to the development branch
 ```
 
 ```bash
+# Switch to the development branch
 git checkout develop
 ```
 

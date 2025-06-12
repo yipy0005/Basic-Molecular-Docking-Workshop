@@ -24,15 +24,15 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 
 ## What You’ll Learn
 
-- How to install Anaconda, a tool that manages Python and packages for you.
-- What a terminal (or command prompt) is and how to open it.
-- How to create and manage a reproducible Python environment using Conda.
-- How to activate that environment and run scripts for molecular docking preparation.
+* How to install Anaconda, a tool that manages Python and packages for you.
+* What a terminal (or command prompt) is and how to open it.
+* How to create and manage a reproducible Python environment using Conda.
+* How to activate that environment and run scripts for molecular docking preparation.
 
 ## Prerequisites
 
-- A computer running **Windows**, **macOS**, or **Linux**.
-- Internet connection to download Anaconda and the workshop materials.
+* A computer running **Windows**, **macOS**, or **Linux**.
+* Internet connection to download Anaconda and the workshop materials.
 
 ---
 
@@ -43,9 +43,10 @@ Anaconda is a free package manager that installs Python and many useful scientif
 1. Open your web browser and go to the [Anaconda Downloads page](https://www.anaconda.com/products/distribution).
 2. Choose the installer for your operating system (Windows, macOS, or Linux).
 3. Download the installer and follow the on-screen instructions:
-   - **Windows**: Double-click the `.exe` file and click through the install wizard.
-   - **macOS**: Open the `.pkg` file and follow the prompts.
-   - **Linux**: Open a terminal and run `bash ~/Downloads/Anaconda3-*.sh`, then follow the prompts.
+
+   * **Windows**: Double-click the `.exe` file and click through the install wizard.
+   * **macOS**: Open the `.pkg` file and follow the prompts.
+   * **Linux**: Open a terminal and run `bash ~/Downloads/Anaconda3-*.sh`, then follow the prompts.
 
 Once installation is complete, you’ll have access to the `conda` command-line tool.
 
@@ -55,14 +56,17 @@ Once installation is complete, you’ll have access to the `conda` command-line 
 
 A **terminal** (also called a command prompt or shell) is a program where you type text commands to control your computer.
 
-- **Windows**:
+* **Windows**:
+
   1. Click the Start menu.
   2. Search for **Anaconda Prompt** or **Command Prompt**.
   3. Click to open it.
-- **macOS**:
+* **macOS**:
+
   1. Open **Finder** > **Applications** > **Utilities**.
   2. Double-click **Terminal**.
-- **Linux**:
+* **Linux**:
+
   1. Press `Ctrl + Alt + T` or search for **Terminal** in your applications menu.
 
 You should see a window with a prompt, such as `C:\Users\YourName>` on Windows or `your-macbook:~ yourname$` on macOS/Linux.
@@ -77,10 +81,10 @@ You should see a window with a prompt, such as `C:\Users\YourName>` on Windows o
    cd ~/Documents
    ```
 
-2. Clone this repository from GitHub (you need to have [Git installed](https://git-scm.com/) — Anaconda includes Git by default):
+2. Clone this repository from GitHub (you need to have [Git installed](https://git-scm.com/)—Anaconda includes Git by default):
 
    ```bash
-   git clone https://github.com/yipy0005/Basic-Molecular-Docking-Workshop.git
+   git clone https://github.com/YourUser/Basic-Molecular-Docking-Workshop.git
    ```
 
 3. Change into the workshop directory:
@@ -121,6 +125,55 @@ After activation, your prompt will change to show the environment name, for exam
 
 ```bash
 (molecular_docking_workshop) your-computer:Basic-Molecular-Docking-Workshop yourname$
+```
+
+---
+
+## Step 5: Activate the Environment
+
+Before using any workshop tools, you must "activate" the environment:
+
+* **All operating systems**:
+
+  ```bash
+  conda activate molecular_docking_workshop
+  ```
+
+After activation, your prompt will change to show the environment name, for example:
+
+```bash
+(molecular_docking_workshop) your-computer:Basic-Molecular-Docking-Workshop yourname$
+```
+
+### Additional Setup: Install Meeko and ProDy
+
+Once the environment is active, install the **Meeko** package and **ProDy**:
+
+```bash
+# Navigate to the Meeko folder
+dd to the folder where Meeko is located:
+cd Meeko
+
+# Switch to the development branch
+```
+
+```bash
+git checkout develop
+```
+
+```bash
+# Install Meeko in editable mode
+pip install .
+```
+
+```bash
+# Install ProDy
+pip install prody
+```
+
+```bash
+# Return to the workshop root folder
+cd ..
 ```
 
 ---

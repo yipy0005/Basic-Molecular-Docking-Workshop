@@ -84,7 +84,7 @@ You should see a window with a prompt, such as `C:\Users\YourName>` on Windows o
 2. Clone this repository from GitHub (you need to have [Git installed](https://git-scm.com/)—Anaconda includes Git by default):
 
    ```bash
-   git clone https://github.com/YourUser/Basic-Molecular-Docking-Workshop.git
+   git clone https://github.com/yipy0005/Basic-Molecular-Docking-Workshop.git
    ```
 
 3. Change into the workshop directory:

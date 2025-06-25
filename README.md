@@ -15,9 +15,10 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 5. [Step 3: Clone the Workshop Repository](#step-3-clone-the-workshop-repository)  
 6. [Step 4: Run the Setup Script](#step-4-run-the-setup-script)  
 7. [Using the `pdbqt2pdb.sh` Script](#using-the-pdbqt2pdbsh-script)  
-8. [Uninstallation](#uninstallation)  
-9. [Troubleshooting](#troubleshooting)  
-10. [Acknowledgments](#acknowledgments)  
+8. [Running the Chemical Editor](#running-the-chemical-editor)  
+9. [Uninstallation](#uninstallation)  
+10. [Troubleshooting](#troubleshooting)  
+11. [Acknowledgments](#acknowledgments)  
 
 ---
 
@@ -27,6 +28,7 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 * What a terminal (or command prompt) is and how to open it.  
 * How to clone the workshop repository.  
 * How to run the provided `setup.sh` to configure your Conda environment, install dependencies, and verify your setup.  
+* How to launch the included chemical editor (`chemdraw`).  
 * How to uninstall the workshop and remove all related files and environments.
 
 ## Prerequisites
@@ -101,6 +103,7 @@ We’ve provided a `setup.sh` that automates environment creation, dependency in
 3. Follow the on-screen output. When it finishes, you’ll have:
    - A Conda environment named `molecular_docking_workshop`  
    - All required packages (including Meeko, ProDy, AutoDock Vina, etc.)  
+   - The chemical editor `chemdraw` installed and ready to launch  
    - Executables verified (`vina`, `reduce`, `python --version`)  
    - The helper script `pdbqt2pdb.sh` made executable  
 
@@ -122,6 +125,18 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
      ```
      → Converted to my_structure_model1.pdb and removed my_structure_model1.pdbqt
      ```
+
+---
+
+## Running the Chemical Editor
+
+After setup, launch the chemical editor by simply typing:
+
+```bash
+chemdraw
+```
+
+and pressing Enter. This will start the `chemdraw` application installed in your environment.
 
 ---
 

@@ -59,14 +59,24 @@ git checkout develop
 pip install -e .
 pip install prody
 
-# 6. Verify tools
+# 6. Install chemical editor (chemdraw)
+echo
+echo "-> Installing chemical editor 'chemdraw'"
+if [ ! -d "$WORK_DIR/chemdraw/.git" ]; then
+  git clone "$CHEM_URL" "$WORK_DIR/chemdraw"
+fi
+cd "$WORK_DIR/chemdraw"
+pip install -e .
+echo "-> 'chemdraw' installed. You can now launch it by typing 'chemdraw'"
+
+# 7. Verify tools
 echo
 echo "-> Verifying your setup"
 echo -n "   vina:   " && which vina || echo "NOT FOUND"
 echo -n "   reduce: " && which reduce || echo "NOT FOUND"
 echo -n "   python: " && python --version
 
-# 7. Make pdbqt2pdb.sh executable
+# 8. Make pdbqt2pdb.sh executable
 echo
 echo "-> Making pdbqt2pdb.sh executable"
 chmod +x "$WORK_DIR/pdbqt2pdb.sh"

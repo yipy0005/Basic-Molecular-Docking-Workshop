@@ -10,6 +10,7 @@ REPO_URL="https://github.com/yipy0005/Basic-Molecular-Docking-Workshop.git"
 #REPO_PATH="$WORK_DIR/$REPO_DIR"
 ENV_NAME="molecular_docking_workshop"
 MEEKO_URL="https://github.com/forlilab/Meeko.git"
+CHEM_URL="https://github.com/yipy0005/chemdraw.git"
 
 echo
 echo "=== Basic Molecular Docking Workshop Setup ==="

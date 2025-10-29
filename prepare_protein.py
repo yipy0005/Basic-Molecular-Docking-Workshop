@@ -232,9 +232,7 @@ Examples:
         action="store_true",
         help="Show what will be removed and ask for confirmation",
     )
-    parser.add_argument(
-        "--quiet", action="store_true", help="Suppress output messages"
-    )
+    parser.add_argument("--quiet", action="store_true", help="Suppress output messages")
 
     args = parser.parse_args()
 
@@ -271,10 +269,18 @@ Examples:
         print(f"\nOutput written to: {output_path}")
         print("\nNext steps:")
         print("1. Add hydrogens (if needed):")
-        print(f"   reduce {output_path} > {output_path.stem}_H.pdb")
-        print("2. Prepare for docking:")
+        print(f"   reduce -FLIP {output_path} > {output_path.stem}_H.pdb")
+        print("   (Use -FLIP to optimize hydrogen placement)")
+        print("\n2. Prepare for docking:")
         print(
-            f"   mk_prepare_receptor.py -i {output_path.stem}_H.pdb -o receptor_prepared"
+            f"   mk_prepare_receptor.py -i {output_path.stem}_H.pdb -o receptor_prepared \\"
+        )
+        print("     --box_size 20 20 20 --box_center X Y Z")
+        print(
+            "\n   Note: If you get histidine protonation errors, use -n flag:"
+        )
+        print(
+            "   mk_prepare_receptor.py ... -n CHAIN:RES=HIE (or HID or HIP)"
         )
 
 

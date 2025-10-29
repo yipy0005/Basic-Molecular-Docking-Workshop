@@ -287,6 +287,36 @@ reduce protein_clean.pdb > protein_clean_H.pdb
 - Verify residue names match those in the file
 - Use ligand extractor to see exact residue names
 
+**Histidine protonation errors with mk_prepare_receptor.py:**
+
+If you get an error like:
+```
+RuntimeError: for residue_key='A:246', 3 have passed: ['HIE', 'HID', 'HIP'] 
+and tied for fewest missing and excess H: HIE HID
+```
+
+This means the histidine protonation state is ambiguous. Solutions:
+
+1. **Use reduce with FLIP optimization** (recommended):
+   ```bash
+   reduce -FLIP protein_clean.pdb > protein_clean_H.pdb
+   ```
+
+2. **Specify histidine protonation manually**:
+   ```bash
+   mk_prepare_receptor.py -i protein_H.pdb -o receptor \
+     -n A:246=HIE --box_size 20 20 20 --box_center 15 53 15
+   ```
+   Where HIE, HID, or HIP are:
+   - **HIE**: Hydrogen on epsilon nitrogen (NE2)
+   - **HID**: Hydrogen on delta nitrogen (ND1)  
+   - **HIP**: Protonated on both nitrogens (charged)
+
+3. **Use the original prepared file**:
+   If you have a pre-prepared receptor file (e.g., from the tutorial), use that instead
+
+For a comprehensive guide on histidine protonation, see [HISTIDINE_TROUBLESHOOTING.md](HISTIDINE_TROUBLESHOOTING.md)
+
 ## Notes
 
 - Water molecules are always removed (HOH, WAT, H2O, TIP, TIP3, SOL)

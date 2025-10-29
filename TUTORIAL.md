@@ -185,3 +185,54 @@ We're continuously improving this workshop! Upcoming features include:
 See [FUTURE_FEATURES.md](FUTURE_FEATURES.md) for the complete roadmap and detailed plans.
 
 **Have suggestions?** We welcome your feedback! Open an issue on the repository to share your ideas.
+
+
+---
+
+## Troubleshooting
+
+### Histidine Protonation Errors
+
+If you encounter an error like this when running `mk_prepare_receptor.py`:
+
+```
+RuntimeError: for residue_key='A:246', 3 have passed: ['HIE', 'HID', 'HIP'] 
+and tied for fewest missing and excess H: HIE HID
+```
+
+**Solution 1: Use reduce with FLIP optimization**
+```bash
+reduce -FLIP protein_clean.pdb > protein_clean_H.pdb
+```
+
+**Solution 2: Specify histidine protonation manually**
+```bash
+mk_prepare_receptor.py -i protein_H.pdb -o receptor \
+  -n A:246=HIE \
+  --box_size 20 20 20 \
+  --box_center 15.614 53.380 15.455
+```
+
+Choose the appropriate histidine tautomer:
+- **HIE**: Hydrogen on epsilon nitrogen (most common)
+- **HID**: Hydrogen on delta nitrogen
+- **HIP**: Protonated on both nitrogens (charged, at low pH)
+
+**Solution 3: Use the provided prepared file**
+
+The tutorial includes `1iep_receptorH.pdb` which is already prepared correctly.
+
+### Other Common Issues
+
+**"Command not found" errors:**
+- Ensure the conda environment is activated: `conda activate molecular_docking_workshop`
+- Verify the script is executable: `chmod +x script_name.py`
+
+**"No ligands found":**
+- Make sure you're using the original PDB file (with ligands), not the cleaned protein file
+- Check that the file contains HETATM records: `grep "^HETATM" file.pdb`
+
+**Box size too small/large:**
+- Use `extract_ligand_center.py` to get appropriate box dimensions
+- Default 20 Å is suitable for most ligands
+- Adjust based on ligand size and desired flexibility

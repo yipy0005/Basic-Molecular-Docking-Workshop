@@ -158,6 +158,9 @@ Start with these in order:
 #### ...troubleshoot issues
 → [README.md](README.md) - Troubleshooting section
 → [LIGAND_EXTRACTOR_README.md](LIGAND_EXTRACTOR_README.md) - Tool-specific issues
+→ [PROTEIN_PREPARER_README.md](PROTEIN_PREPARER_README.md) - Protein preparation issues
+→ [HISTIDINE_TROUBLESHOOTING.md](HISTIDINE_TROUBLESHOOTING.md) - Histidine protonation errors
+→ [TUTORIAL.md](TUTORIAL.md) - Common tutorial issues
 
 ---
 

@@ -19,12 +19,13 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 5. [Step 3: Clone the Workshop Repository](#step-3-clone-the-workshop-repository)  
 6. [Step 4: Run the Setup Script](#step-4-run-the-setup-script)  
 7. [Using the `pdbqt2pdb.sh` Script](#using-the-pdbqt2pdbsh-script)  
-8. [Extracting Ligand Center Coordinates](#extracting-ligand-center-coordinates)  
-9. [Running the Chemical Editor](#running-the-chemical-editor)  
-10. [Uninstallation](#uninstallation)  
-11. [Troubleshooting](#troubleshooting)  
-12. [Future Features](#future-features)  
-13. [Acknowledgments](#acknowledgments)  
+8. [Preparing Protein Structures](#preparing-protein-structures)  
+9. [Extracting Ligand Center Coordinates](#extracting-ligand-center-coordinates)  
+10. [Running the Chemical Editor](#running-the-chemical-editor)  
+11. [Uninstallation](#uninstallation)  
+12. [Troubleshooting](#troubleshooting)  
+13. [Future Features](#future-features)  
+14. [Acknowledgments](#acknowledgments)  
 
 ---
 
@@ -131,6 +132,27 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
      ```
      → Converted to my_structure_model1.pdb and removed my_structure_model1.pdbqt
      ```
+
+---
+
+## Preparing Protein Structures
+
+Before docking, you need to clean your protein structure by removing water molecules and ligands. The `prepare_protein.py` tool automates this process.
+
+### Quick Start
+
+```bash
+# Remove all waters and ligands
+python prepare_protein.py -i protein.pdb -o protein_clean.pdb
+
+# Keep specific cofactors (e.g., zinc ions)
+python prepare_protein.py -i protein.pdb -o protein_clean.pdb --keep ZN
+
+# Interactive mode (preview before cleaning)
+python prepare_protein.py -i protein.pdb -o protein_clean.pdb --interactive
+```
+
+For detailed usage, see [PROTEIN_PREPARER_README.md](PROTEIN_PREPARER_README.md).
 
 ---
 

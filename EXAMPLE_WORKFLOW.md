@@ -11,7 +11,30 @@ cd input_files
 curl -O "https://files.rcsb.org/download/1IEP.pdb"
 ```
 
-### 2. Identify Ligands and Get Docking Box Parameters
+### 2. Clean Protein Structure (Remove Waters and Ligands)
+
+```bash
+# Remove all waters and ligands to get clean protein
+python ../prepare_protein.py -i 1IEP.pdb -o 1IEP_protein_only.pdb
+
+# Output shows:
+# ================================================================================
+# Protein Preparation Summary
+# ================================================================================
+# Input file: 1IEP.pdb
+# Format: PDB
+# 
+# Protein atoms: 4458
+# 
+# Removed water molecules: 172
+# 
+# Removed ligands:
+#   CL: 6 atoms
+#   STI: 74 atoms
+# ================================================================================
+```
+
+### 3. Identify Ligands and Get Docking Box Parameters
 
 ```bash
 # Interactive mode - lists ligands and prompts for selection
@@ -65,7 +88,7 @@ python ../extract_ligand_center.py -i 1IEP.pdb -s 5
 #   --box_center 15.614 53.380 15.455
 ```
 
-### 3. Prepare the Receptor
+### 4. Prepare the Receptor
 
 First, add hydrogens to the receptor (if not already present):
 
@@ -92,7 +115,7 @@ This creates:
 - `1iep_receptor.pdbqt` - Receptor in PDBQT format
 - `1iep_receptor.box.txt` - Box configuration for Vina
 
-### 4. Prepare the Ligand
+### 5. Prepare the Ligand
 
 ```bash
 mk_prepare_ligand.py \
@@ -100,7 +123,7 @@ mk_prepare_ligand.py \
   -o 1iep_ligand.pdbqt
 ```
 
-### 5. Run Molecular Docking
+### 6. Run Molecular Docking
 
 ```bash
 vina \
@@ -111,7 +134,7 @@ vina \
   --out 1iep_ligand_vina_out.pdbqt
 ```
 
-### 6. Convert Results to PDB Format
+### 7. Convert Results to PDB Format
 
 ```bash
 ../pdbqt2pdb.sh 1iep_ligand_vina_out.pdbqt
@@ -122,7 +145,7 @@ This creates individual PDB files for each docked pose:
 - `1iep_ligand_vina_out_model2.pdb`
 - etc.
 
-### 7. Visualize Results
+### 8. Visualize Results
 
 ```bash
 pymol 1iep_receptorH.pdb 1iep_ligand_vina_out_model*.pdb

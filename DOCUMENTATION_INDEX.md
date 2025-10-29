@@ -16,6 +16,20 @@ Welcome! This index helps you find the right documentation for your needs.
 
 ## 🔧 Current Tools
 
+### Protein Structure Preparer
+
+**What it does**: Cleans protein structures by removing waters and ligands
+
+**Documentation**:
+- **[PROTEIN_PREPARER_README.md](PROTEIN_PREPARER_README.md)** - Complete usage guide
+
+**Key Features**:
+- Remove water molecules automatically
+- Remove ligands and heteroatoms
+- Option to keep specific cofactors/ions
+- Interactive mode with preview
+- Support for PDB and CIF formats
+
 ### Ligand Center Extractor
 
 **What it does**: Identifies ligands in PDB/CIF files and calculates docking box parameters
@@ -67,8 +81,10 @@ Welcome! This index helps you find the right documentation for your needs.
 - [EXAMPLE_WORKFLOW.md](EXAMPLE_WORKFLOW.md) - Example with 1IEP structure
 
 ### Tools & Scripts
+- [PROTEIN_PREPARER_README.md](PROTEIN_PREPARER_README.md) - Protein structure preparation
 - [LIGAND_EXTRACTOR_README.md](LIGAND_EXTRACTOR_README.md) - Ligand center extraction
-- `extract_ligand_center.py` - Main extraction script
+- `prepare_protein.py` - Protein cleaning script
+- `extract_ligand_center.py` - Ligand extraction script
 - `pdbqt2pdb.sh` - Convert PDBQT to PDB
 
 ### Development & Updates
@@ -117,6 +133,9 @@ Start with these in order:
 
 #### ...run my first docking
 → [TUTORIAL.md](TUTORIAL.md) - Complete walkthrough
+
+#### ...clean my protein structure
+→ [PROTEIN_PREPARER_README.md](PROTEIN_PREPARER_README.md) - Protein preparation guide
 
 #### ...extract ligand coordinates
 → [QUICK_START_GUIDE.md](QUICK_START_GUIDE.md) - Quick start
@@ -211,6 +230,9 @@ Start with these in order:
 # Setup
 ./setup.sh
 
+# Clean protein structure
+python prepare_protein.py -i protein.pdb -o protein_clean.pdb
+
 # Extract ligand center (interactive)
 python extract_ligand_center.py -i protein.pdb
 
@@ -218,6 +240,7 @@ python extract_ligand_center.py -i protein.pdb
 ./pdbqt2pdb.sh output.pdbqt
 
 # Get help
+python prepare_protein.py --help
 python extract_ligand_center.py --help
 ```
 

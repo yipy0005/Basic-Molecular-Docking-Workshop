@@ -16,7 +16,30 @@ This folder contains the receptor and ligand files needed for docking.
 
 ---
 
-## 2. (Optional) Extract Ligand Center Coordinates
+## 2. (Optional) Prepare Protein Structure
+
+If you have a PDB or CIF file with waters and ligands that need to be removed, use the `prepare_protein.py` script:
+
+```bash
+# Remove all waters and ligands
+python ../prepare_protein.py -i 1iep_full.pdb -o 1iep_protein_only.pdb
+
+# Or keep specific cofactors (e.g., metal ions)
+python ../prepare_protein.py -i 1iep_full.pdb -o 1iep_protein_only.pdb --keep ZN MG
+
+# Interactive mode to preview what will be removed
+python ../prepare_protein.py -i 1iep_full.pdb -o 1iep_protein_only.pdb --interactive
+```
+
+The script will:
+- Remove all water molecules (HOH, WAT, etc.)
+- Remove ligands and other heteroatoms
+- Keep only protein atoms (ATOM records)
+- Optionally keep specified cofactors or ions
+
+---
+
+## 3. (Optional) Extract Ligand Center Coordinates
 
 If you have a PDB or CIF file with ligands and need to determine the docking box center coordinates, use the `extract_ligand_center.py` script:
 
@@ -45,7 +68,7 @@ You can then use these coordinates in the next step with `mk_prepare_receptor.py
 
 ---
 
-## 3. Prepare the Receptor File
+## 4. Prepare the Receptor File
 
 Use the `mk_prepare_receptor.py` script to prepare the receptor. This includes adding hydrogens, assigning charges, and generating a box definition file.
 
@@ -72,7 +95,7 @@ This will produce:
 
 ---
 
-## 4. Prepare the Ligand File
+## 5. Prepare the Ligand File
 
 Convert your ligand from SDF to PDBQT format:
 
@@ -87,7 +110,7 @@ mk_prepare_ligand.py \
 
 ---
 
-## 5. Run Molecular Docking with AutoDock Vina
+## 6. Run Molecular Docking with AutoDock Vina
 
 Execute Vina using the prepared receptor and ligand, specifying the configuration file and desired exhaustiveness:
 
@@ -108,7 +131,7 @@ vina \
 
 ---
 
-## 6. Extract Individual PDB Models
+## 7. Extract Individual PDB Models
 
 Once docking completes, use the provided script to split the multi‐model `.pdbqt` output into separate `.pdb` files:
 
@@ -130,7 +153,7 @@ You’ll find a set of `*.pdb` files, one per docked pose, ready for visualizati
 
 ---
 
-## 7. Visualize Docked Poses with PyMOL
+## 8. Visualize Docked Poses with PyMOL
 
 1. Launch PyMOL from your terminal:
 

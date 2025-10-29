@@ -4,6 +4,10 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 
 > **Note:** First complete the setup steps below to configure your environment, then follow the step-by-step instructions in [TUTORIAL.md](https://github.com/yipy0005/Basic-Molecular-Docking-Workshop/blob/main/TUTORIAL.md) to learn how to perform molecular docking.
 
+> **New:** Check out [EXAMPLE_WORKFLOW.md](EXAMPLE_WORKFLOW.md) for a complete end-to-end example with the 1IEP structure.
+
+> **📚 Documentation:** See [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) for a complete guide to all available documentation.
+
 ---
 
 ## Table of Contents
@@ -15,10 +19,12 @@ Welcome to the **Basic Molecular Docking Workshop**! This guide will walk you th
 5. [Step 3: Clone the Workshop Repository](#step-3-clone-the-workshop-repository)  
 6. [Step 4: Run the Setup Script](#step-4-run-the-setup-script)  
 7. [Using the `pdbqt2pdb.sh` Script](#using-the-pdbqt2pdbsh-script)  
-8. [Running the Chemical Editor](#running-the-chemical-editor)  
-9. [Uninstallation](#uninstallation)  
-10. [Troubleshooting](#troubleshooting)  
-11. [Acknowledgments](#acknowledgments)  
+8. [Extracting Ligand Center Coordinates](#extracting-ligand-center-coordinates)  
+9. [Running the Chemical Editor](#running-the-chemical-editor)  
+10. [Uninstallation](#uninstallation)  
+11. [Troubleshooting](#troubleshooting)  
+12. [Future Features](#future-features)  
+13. [Acknowledgments](#acknowledgments)  
 
 ---
 
@@ -128,6 +134,39 @@ We provide a script to convert `.pdbqt` files into individual `.pdb` files.
 
 ---
 
+## Extracting Ligand Center Coordinates
+
+When preparing for molecular docking, you need to know where to center your docking box. The `extract_ligand_center.py` tool helps you identify ligands in PDB/CIF files and calculate appropriate box parameters.
+
+### Quick Start
+
+1. Run in interactive mode to see all ligands and select one:
+   ```bash
+   python extract_ligand_center.py -i input_files/protein.pdb
+   ```
+   The tool will:
+   - List all ligands and prompt you to select one
+   - Ask for a custom box size (or use default 20 Å)
+
+2. Or directly select a ligand with custom box size:
+   ```bash
+   python extract_ligand_center.py -i input_files/protein.pdb -s 1 --box-size "25"
+   ```
+
+3. The tool will provide ready-to-use coordinates for `mk_prepare_receptor.py`:
+   ```bash
+   mk_prepare_receptor.py \
+     -i your_receptor.pdb \
+     -o receptor_prepared \
+     -p -v \
+     --box_size 24.7 32.7 29.5 \
+     --box_center 15.614 53.380 15.455
+   ```
+
+For detailed usage and examples, see [LIGAND_EXTRACTOR_README.md](LIGAND_EXTRACTOR_README.md) or check out the [QUICK_START_GUIDE.md](QUICK_START_GUIDE.md).
+
+---
+
 ## Running the Chemical Editor
 
 After setup, launch the chemical editor by simply typing:
@@ -163,6 +202,26 @@ If you ever want to remove the workshop and its environment entirely, use the pr
 * **"Command not found" errors**: Ensure you used `./setup.sh` and that it finished without errors.  
 * **Permission denied** when running scripts: Verify `chmod +x setup.sh uninstall.sh pdbqt2pdb.sh` has been applied.  
 * If you get stuck, feel free to ask for help or check online resources for Conda, Git, and the workshop repo.
+
+---
+
+## Future Features
+
+We're continuously working to improve this workshop! Planned enhancements include:
+
+### Automated Structure Preparation
+- **Protein Preparation**: Automated hydrogen addition, charge assignment, and structure cleaning
+- **Ligand Preparation**: Convert SMILES to 3D structures, handle protonation states, generate conformers
+- **One-Click Workflow**: From raw structures to docking-ready files in a single command
+
+### Enhanced Analysis Tools
+- **Binding Site Detection**: Automatic identification of potential binding pockets
+- **Flexible Residue Selection**: Suggest residues for flexible docking
+- **Batch Processing**: Process multiple ligands or structures at once
+
+See [FUTURE_FEATURES.md](FUTURE_FEATURES.md) for a comprehensive roadmap and detailed information about upcoming features.
+
+**Your feedback matters!** If you have suggestions or feature requests, please open an issue on the repository.
 
 ---
 

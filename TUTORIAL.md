@@ -16,7 +16,36 @@ This folder contains the receptor and ligand files needed for docking.
 
 ---
 
-## 2. Prepare the Receptor File
+## 2. (Optional) Extract Ligand Center Coordinates
+
+If you have a PDB or CIF file with ligands and need to determine the docking box center coordinates, use the `extract_ligand_center.py` script:
+
+```bash
+# Interactive mode - lists ligands and prompts for selection and box size
+python ../extract_ligand_center.py -i 1iep_full.pdb
+
+# Or directly select a specific ligand with default 20 Å box
+python ../extract_ligand_center.py -i 1iep_full.pdb -s 5
+
+# Specify a custom box size
+python ../extract_ligand_center.py -i 1iep_full.pdb -s 5 --box-size "25"
+
+# Or use different dimensions for each axis
+python ../extract_ligand_center.py -i 1iep_full.pdb -s 5 --box-size "25 30 20"
+```
+
+The script will:
+- Identify all ligands in the structure (excluding water molecules)
+- Let you interactively select a ligand (or use `-s` to select directly)
+- Prompt for a custom box size or use default 20 Å
+- Calculate the geometric center of the selected ligand
+- Provide box size and center coordinates for docking
+
+You can then use these coordinates in the next step with `mk_prepare_receptor.py`.
+
+---
+
+## 3. Prepare the Receptor File
 
 Use the `mk_prepare_receptor.py` script to prepare the receptor. This includes adding hydrogens, assigning charges, and generating a box definition file.
 
@@ -43,7 +72,7 @@ This will produce:
 
 ---
 
-## 3. Prepare the Ligand File
+## 4. Prepare the Ligand File
 
 Convert your ligand from SDF to PDBQT format:
 
@@ -58,7 +87,7 @@ mk_prepare_ligand.py \
 
 ---
 
-## 4. Run Molecular Docking with AutoDock Vina
+## 5. Run Molecular Docking with AutoDock Vina
 
 Execute Vina using the prepared receptor and ligand, specifying the configuration file and desired exhaustiveness:
 
@@ -79,7 +108,7 @@ vina \
 
 ---
 
-## 5. Extract Individual PDB Models
+## 6. Extract Individual PDB Models
 
 Once docking completes, use the provided script to split the multi‐model `.pdbqt` output into separate `.pdb` files:
 
@@ -101,7 +130,7 @@ You’ll find a set of `*.pdb` files, one per docked pose, ready for visualizati
 
 ---
 
-## 6. Visualize Docked Poses with PyMOL
+## 7. Visualize Docked Poses with PyMOL
 
 1. Launch PyMOL from your terminal:
 
@@ -116,3 +145,20 @@ You’ll find a set of `*.pdb` files, one per docked pose, ready for visualizati
 ---
 
 Congratulations! You’ve successfully run a basic molecular docking workflow using AutoDock Vina. Feel free to explore different box sizes, exhaustiveness levels, or other receptor/ligand pairs.
+
+---
+
+## What's Next?
+
+### Future Enhancements
+
+We're continuously improving this workshop! Upcoming features include:
+
+- **Automated Protein Preparation**: One-command hydrogen addition, charge assignment, and structure cleaning
+- **Ligand Preparation from SMILES**: Convert SMILES strings directly to docking-ready ligands
+- **Binding Site Detection**: Automatic identification of potential binding pockets
+- **Batch Processing**: Process multiple ligands or structures at once
+
+See [FUTURE_FEATURES.md](FUTURE_FEATURES.md) for the complete roadmap and detailed plans.
+
+**Have suggestions?** We welcome your feedback! Open an issue on the repository to share your ideas.
